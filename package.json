@@ -1,0 +1,7 @@
+{
+  "name": "bytom-sdk",
+  "version": "1.0.0",
+  "description": "node sdk to interact with bytomd",
+  "main": "index.js",
+  "license": "Apache-2.0"
+}
