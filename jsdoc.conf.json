@@ -1,0 +1,17 @@
+{
+  "source": {
+    "include": ["./src"]
+  },
+  "opts": {
+    "readme": "./README.md",
+    "destination": "./doc",
+    "recurse": true,
+    "template": "./node_modules/ink-docstrap/template"
+  },
+  "templates": {
+    "systemName": "Bytom Node.js SDK",
+    "theme": "cosmo",
+    "linenums": true
+  },
+  "plugins": ["plugins/markdown"]
+}
