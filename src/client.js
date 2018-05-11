@@ -1,5 +1,9 @@
+import Connection from 'connection'
+
 class Client {
-  // TODO: to be implementd
+  constructor(baseUrl, token) {
+    this.connection = new Connection(baseUrl, token)
+  }
 }
 
 export default Client
