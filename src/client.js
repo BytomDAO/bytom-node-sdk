@@ -1,11 +1,11 @@
 import Connection from 'connection'
-import Account from 'api/account'
+import AccountsApi from 'api/account'
 
 class Client {
   constructor(baseUrl, token) {
     this.connection = new Connection(baseUrl, token)
 
-    this.account = new Account(this.connection)
+    this.account = new AccountsApi(this.connection)
   }
 }
 
