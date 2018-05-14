@@ -10,3 +10,5 @@ const keys = connection => {
     })
   }
 }
+
+export default keys

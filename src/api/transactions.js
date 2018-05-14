@@ -21,3 +21,5 @@ const transactions = connection => {
     listByAccountId: (accountId) => connection.request('list-transactions', {account_id: accountId})
   }
 }
+
+export default transactions()
