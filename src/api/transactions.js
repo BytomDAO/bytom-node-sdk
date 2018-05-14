@@ -1,4 +1,4 @@
-const transactions = connection => {
+const TransactionsApi = connection => {
   return {
     build: (baseTransaction = null, actions, ttl = 0) => connection.request('/build-transaction', {
       base_transaction: baseTransaction,
@@ -22,4 +22,4 @@ const transactions = connection => {
   }
 }
 
-export default transactions()
+export default TransactionsApi

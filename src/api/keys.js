@@ -1,4 +1,4 @@
-const keys = connection => {
+const KeysApi = connection => {
   return {
     create: (alias, password) => connection.request('/create-key', {alias, password}),
     list: () => connection.request('/list-keys'),
@@ -11,4 +11,4 @@ const keys = connection => {
   }
 }
 
-export default keys
+export default KeysApi
