@@ -1,7 +1,7 @@
-const BalancesApi = (connection) => {
+const balancesApi = (connection) => {
   return {
     list: () => connection.request('/list-balances', {})
   }
 }
 
-export default BalancesApi
+export default balancesApi

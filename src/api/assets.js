@@ -35,7 +35,7 @@
  *
  * @module AssetsApi
  */
-const AssetsApi = (connection) => {
+const assetsApi = (connection) => {
   /**
    * @typedef {String[]} xpubs
    * The list of keys used to issue units of the asset.
@@ -104,4 +104,4 @@ const AssetsApi = (connection) => {
   }
 }
 
-export default AssetsApi
+export default assetsApi

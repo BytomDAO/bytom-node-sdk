@@ -24,7 +24,7 @@
  *
  * @module AccountsApi
  */
-const AccountsApi = (connection) => {
+const accountsApi = (connection) => {
   /**
    * @typedef {String[]} xpubs
    * The list of keys used to create control programs under the account.
@@ -91,4 +91,4 @@ const AccountsApi = (connection) => {
   }
 }
 
-export default AccountsApi
+export default accountsApi

@@ -1,20 +1,20 @@
 import Connection from 'connection'
-import AccountsApi from 'api/account'
-import AssetApi from 'api/assets'
-import KeysApi from 'api/keys'
-import TransactionApi from 'api/transactions'
-import BalancesApi from 'api/balances'
+import accountsApi from 'api/account'
+import assetApi from 'api/assets'
+import keysApi from 'api/keys'
+import transactionApi from 'api/transactions'
+import balancesApi from 'api/balances'
 import unspentOutputsAPI from 'api/unspentOutputs'
 
 class Client {
   constructor(baseUrl, token) {
     this.connection = new Connection(baseUrl, token)
 
-    this.accounts = new AccountsApi(this.connection)
-    this.assets = new AssetApi(this.connection)
-    this.keys = new KeysApi(this.connection)
-    this.transactions = new TransactionApi(this.connection)
-    this.balances = new BalancesApi(this.connection)
+    this.accounts = new accountsApi(this.connection)
+    this.assets = new assetApi(this.connection)
+    this.keys = new keysApi(this.connection)
+    this.transactions = new transactionApi(this.connection)
+    this.balances = new balancesApi(this.connection)
     this.unspentOutputs = new unspentOutputsAPI(this.connection)
   }
 }
