@@ -4,6 +4,7 @@ import AssetApi from 'api/assets'
 import KeysApi from 'api/keys'
 import TransactionApi from 'api/transactions'
 import BalancesApi from 'api/balances'
+import unspentOutputsAPI from 'api/unspentOutputs'
 
 class Client {
   constructor(baseUrl, token) {
@@ -14,6 +15,7 @@ class Client {
     this.keys = new KeysApi(this.connection)
     this.transactions = new TransactionApi(this.connection)
     this.balances = new BalancesApi(this.connection)
+    this.unspentOutputs = new unspentOutputsAPI(this.connection)
   }
 }
 
