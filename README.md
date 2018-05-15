@@ -6,8 +6,9 @@
 
 ```
 const bytom = require('bytom-sdk')
+const url = 'http://localhost:9888'
 
-const client = new bytom.Client()
+const client = new bytom.Client(url)
 ```
 
 ## Interaction with bytom
