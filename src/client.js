@@ -17,7 +17,7 @@ class Client {
     this.transactions = new transactionApi(this.connection)
     this.balances = new balancesApi(this.connection)
     this.unspentOutputs = new unspentOutputsAPI(this.connection)
-    this.accessTokensApi = new accessTokensApi(this.connection)
+    this.accessTokens = new accessTokensApi(this.connection)
   }
 }
 
