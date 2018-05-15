@@ -69,7 +69,7 @@ const assetsApi = (connection) => {
      * @param {module:AssetsApi~quorum} quorum - The number of keys required to sign transactions for the account.
      * @param {module:AssetsApi~alias} alias - Asset alias.
      * @param {module:AssetsApi~definition} definition - Asset definition.
-     * @returns {Promise<Response>} Newly created asset response.
+     * @returns {Promise<Asset>} Newly created asset.
      */
     create: (xpubs, quorum, alias, definition) => connection.request('/create-asset', {
       alias,
@@ -81,26 +81,25 @@ const assetsApi = (connection) => {
     /**
      * List all assets in one Bytom node.
      *
-     * @returns {Promise<Response>} target assets response.
+     * @returns {Promise<Array<Asset>>} target assets.
      */
-    listAssets: () => connection.request('/list-assets', {}),
+    list: () => connection.request('/list-assets', {}),
 
     /**
      * Get asset by the asset id.
      *
      * @param {module:AssetsApi~id} id - Asset id.
-     * @returns {Promise<Response>} target asset response.
+     * @returns {Promise<Asset>} target asset.
      */
-    getAsset: (id) => connection.request('/get-asset', {id}),
+    getById: (id) => connection.request('/get-asset', {id}),
 
     /**
      * Update asset alias.
      *
      * @param {module:AssetsApi~id} id - Asset id.
      * @param {String} newAlias - new alias.
-     * @returns {Promise<Response>} update response.
      */
-    updateAssetAlias: (id, newAlias) => connection.request('/update-asset-alias', {id, alias: newAlias})
+    updateAlias: (id, newAlias) => connection.request('/update-asset-alias', {id, alias: newAlias})
   }
 }
 
