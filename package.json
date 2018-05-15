@@ -2,7 +2,7 @@
   "name": "bytom-sdk",
   "version": "1.0.0",
   "description": "node sdk to interact with bytomd",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "Apache-2.0",
   "scripts": {
     "docs": "jsdoc -c jsdoc.conf.json",

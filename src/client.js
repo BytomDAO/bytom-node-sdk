@@ -1,11 +1,11 @@
-import Connection from 'connection'
-import accountsApi from 'api/account'
-import assetApi from 'api/assets'
-import keysApi from 'api/keys'
-import transactionApi from 'api/transactions'
-import balancesApi from 'api/balances'
-import unspentOutputsAPI from 'api/unspentOutputs'
-import accessTokensApi from 'api/accessTokens'
+import Connection from './connection'
+import accountsApi from './api/accounts'
+import assetApi from './api/assets'
+import keysApi from './api/keys'
+import transactionApi from './api/transactions'
+import balancesApi from './api/balances'
+import unspentOutputsAPI from './api/unspentOutputs'
+import accessTokensApi from './api/accessTokens'
 
 class Client {
   constructor(baseUrl, token) {
