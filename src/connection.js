@@ -22,7 +22,15 @@ class Connection {
       config.headers['Authorization'] = `Basic ${btoa(this.token)}`
     }
 
-    return axios.request(config)
+    return axios.request(config).then(resp => {
+      if (resp.data.status === 'fail') {
+        throw resp.data.msg
+      } else if (resp.data.status === 'success') {
+        return resp.data.data
+      }
+
+      return resp.data
+    })
   }
 }
 

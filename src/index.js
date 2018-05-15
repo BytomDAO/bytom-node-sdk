@@ -1,5 +1,5 @@
-import Client from './client'
+const Client = require('./client')
 
-export default {
+module.exports = {
   Client
 }
