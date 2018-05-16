@@ -109,8 +109,37 @@
  */
 const transactionsApi = connection => {
   /**
+   * @typedef {Object} Action
+   * Basic unit to build a transaction.
+   * For spend transaction, either account_id or account_alias is required to specify account info.
+   * Asset info(either asset_id or asset_alias ) is required for all kinds of action.
+   *
+   * @property {String} type
+   * Currently 4 types of action is supported:
+   * - spend_account: action to spend UTXO from account.
+   * - issue: action to issue asset.
+   * - retire: action to retire asset.
+   * - control_address: action to receive asset with address.
+   *
+   * @property {String} account_alias
+   * The alias of the account transferring the asset (possibly null).
+   *
+   * @property {String} account_id
+   * The id of the account transferring the asset (possibly null).
+   *
+   * @property {String} asset_id
+   * The id of the asset being issued or spent (possibly null).
+   *
+   * @property {String} asset_alias
+   * The alias of the asset being issued or spent (possibly null).
+   *
+   * @property {String} address
+   * Address to receive the transfered asset(possibly null, required for control_address action).
+   */
+
+  /**
    * @typedef {Object} SignResult
-   * /sign-transaction api return data structure.
+   * Data structure `/sign-transaction` api will return.
    *
    * @property {Transaction} transaction
    * The signed transaction if sign success.
@@ -124,8 +153,8 @@ const transactionsApi = connection => {
      * Build an unsigned transaction from a set of actions and base transction(possibly null).
      *
      * @param {String} baseTransaction - Encoded base raw transaction.
-     * @param {String} actions - Set of actions to compose the transaction.
-     * @param {Number} ttl - Time to spent UTXOs will be reserverd(can't be spent during this time duration).
+     * @param {module:TransactionsApi~Action[]} actions - Set of actions to compose the transaction.
+     * @param {Number} ttl - Time duration to spent UTXOs will be reserverd(can't be spent during this time duration).
      * @returns {Promise<Object>} - Unsigned transaction template.
      */
     build: (baseTransaction = null, actions, ttl = 5000) => connection.request('/build-transaction', {

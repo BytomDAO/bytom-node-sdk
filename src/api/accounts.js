@@ -74,7 +74,7 @@ const accountsApi = (connection) => {
     /**
      * Create a new account.
      *
-     * @param {module:AccountsApi~xpubs} xpubs - Keys for account creation.
+     * @param {module:AccountsApi~xpubs} xpubs - Xpub of Keys for account creation.
      * @param {module:AccountsApi~quorum} quorum - The number of keys required to sign transactions for the account.
      * @param {module:AccountsApi~alias} alias - Account alias.
      * @returns {Promise<Account>} Newly created account response.
