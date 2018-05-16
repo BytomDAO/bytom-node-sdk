@@ -148,6 +148,8 @@ const transactionsApi = connection => {
    * Whether all input actions are signed. It means this transaction can be submit if true, else not.
    */
 
+  const ONE_MINUTE = 1000 * 60
+
   return {
     /**
      * Build an unsigned transaction from a set of actions and base transction(possibly null).
@@ -157,7 +159,7 @@ const transactionsApi = connection => {
      * @param {Number} ttl - Time duration to spent UTXOs will be reserverd(can't be spent during this time duration).
      * @returns {Promise<Object>} - Unsigned transaction template.
      */
-    build: (baseTransaction = null, actions, ttl = 5000) => connection.request('/build-transaction', {
+    build: (baseTransaction = null, actions, ttl = ONE_MINUTE * 2) => connection.request('/build-transaction', {
       base_transaction: baseTransaction,
       actions,
       ttl
