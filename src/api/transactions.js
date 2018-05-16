@@ -108,17 +108,54 @@
  * @module TransactionsApi
  */
 const transactionsApi = connection => {
+  /**
+   * @typedef {Object} SignResult
+   * /sign-transaction api return data structure.
+   *
+   * @property {Transaction} transaction
+   * The signed transaction if sign success.
+   *
+   * @property {Boolean} sign_complete
+   * Whether all input actions are signed. It means this transaction can be submit if true, else not.
+   */
+
   return {
-    build: (baseTransaction = null, actions, ttl = 0) => connection.request('/build-transaction', {
+    /**
+     * Build an unsigned transaction from a set of actions and base transction(possibly null).
+     *
+     * @param {String} baseTransaction - Encoded base raw transaction.
+     * @param {String} actions - Set of actions to compose the transaction.
+     * @param {Number} ttl - Time to spent UTXOs will be reserverd(can't be spent during this time duration).
+     * @returns {Promise<Object>} - Unsigned transaction template.
+     */
+    build: (baseTransaction = null, actions, ttl = 5000) => connection.request('/build-transaction', {
       base_transaction: baseTransaction,
       actions,
       ttl
     }),
 
+    /**
+     * Sign transaction.
+     *
+     * @param {Object} transaction - The built transaction template.
+     * @param {Object} password - Password of the key which will sign the transaction template.
+     * @returns {Promise<module:TransactionsApi~SignResult>} - Sign result.
+     */
     sign: (transaction, password) => connection.request('/sign-transaction', {transaction, password}),
 
+    /**
+     * Submit a signed transaction to the blockchain.
+     *
+     * @param {String} raw_transaction - Encoded fully signed transaction.
+     * @returns {Promise<Object>} Submit result. It will return tx_id if submit successfully else error.
+     */
     submit: (rawTransaction) => connection.request('/submit-transaction', {raw_transaction: rawTransaction}),
 
+    /**
+     * Estimate how much gas one trasaction may use.
+     * @param {Object} transaction - The transaction template to estimate.
+     * @returns {Object} Estimation result.
+     */
     estimateGas: (transaction) => connection.request('/estimate-transaction-gas', {
       transaction_template: transaction
     }),
