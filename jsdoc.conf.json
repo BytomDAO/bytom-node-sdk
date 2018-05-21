@@ -4,7 +4,7 @@
   },
   "opts": {
     "readme": "./README.md",
-    "destination": "./doc",
+    "destination": "./docs",
     "recurse": true,
     "template": "./node_modules/ink-docstrap/template"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "bytom-sdk",
+  "name": "bytom-node-sdk",
   "version": "1.0.0",
   "description": "node sdk to interact with bytomd",
   "main": "dist/index.js",
