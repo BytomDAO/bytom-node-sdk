@@ -2,37 +2,48 @@
 
 ## Terminology
 
-### Keys
+### [Keys](https://bytom-node-sdk.github.io/global.html#Key__anchor)
 
 Cryptographic keys are the primary authorization mechanism on a blockchain.
 
 To create accounts or assets, xpub of keys are required. With this sdk, we can
-`create/delete/list/resetPassword` the key. Please check the api doc if you want
+`create/delete/list/resetPassword` the key. Please check the 
+[API doc](https://bytom-node-sdk.github.io/module-KeysApi.html) if you want
 to operate with keys.
 
-### Account
+### [Account](https://bytom-node-sdk.github.io/global.html#Account__anchor)
 
 An account is an object in Bytom that tracks ownership of assets on a blockchain. 
-It's defined under one Bytom node created with one or serveral keys.
+It's defined under one Bytom node created with one or serveral keys.  
 
-### Asset
+[Related API](https://bytom-node-sdk.github.io/module-AccountsApi.html)
+
+### [Asset](https://bytom-node-sdk.github.io/global.html#Asset__anchor)
 
 An asset is a type of value that can be issued on a blockchain. All units of
 a given asset are fungible. Units of an asset can be transacted directly
 between parties without the involvement of the issuer.
 
-### Transaction
+[Related API](https://bytom-node-sdk.github.io/module-AssetsApi.html)
+
+### [Transaction](https://bytom-node-sdk.github.io/global.html#Transaction__anchor)
 
 Blockchain is chain of blocks, while block consists of numbers of transactions.
 
-### Unspent Output(UTXO)
+[Related API](https://bytom-node-sdk.github.io/module-TransactionsApi.html)
+
+### [Unspent Output(UTXO)](https://bytom-node-sdk.github.io/global.html#UnspentOutput__anchor)
 
 Bytom is UTXO based blockchain. One transaction spend some UTXOs, and produces new UTXOs.
 
-### Balance
+[Related API](https://bytom-node-sdk.github.io/module-UnspentOutputsApi.html)
+
+### [Balance](https://bytom-node-sdk.github.io/global.html#Balance__anchor)
 
 Any balance on the blockchain is simply a summation of UTXOs. In one bytomd, balance means
 summation of UTXOs of one account.
+
+[Related API](https://bytom-node-sdk.github.io/module-BalancesApi.html)
 
 ## Usage
 
