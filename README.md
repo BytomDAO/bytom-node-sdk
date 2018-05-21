@@ -42,7 +42,10 @@ summation of UTXOs of one account.
 const bytom = require('bytom-sdk')
 const url = 'http://localhost:9888'
 
-const client = new bytom.Client(url)
+// access token is required when client is not in same origin with the request bytom node
+const accessToken = ''
+
+const client = new bytom.Client(url, accessToken)
 ```
 
 ## Interaction with bytom
