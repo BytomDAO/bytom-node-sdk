@@ -49,11 +49,12 @@ summation of UTXOs of one account.
 
 ### In your code
 
-```
+```javascript
 const bytom = require('bytom-sdk')
 const url = 'http://localhost:9888'
 
-// access token is required when client is not in same origin with the request bytom node
+// access token is required when client is not in same origin
+// with the request bytom node
 const accessToken = ''
 
 const client = new bytom.Client(url, accessToken)
@@ -74,7 +75,9 @@ It will create a key whose alias is 'alias' while password is 'password'.
 ### Step 2: create a account
 
 ```javascript
-const accountPromise = keyPromise.then(key => client.accounts.create([key.xpub], 1, 'account'))
+const accountPromise = keyPromise.then(key => {
+ client.accounts.create([key.xpub], 1, 'account')
+})
 ```
 
 ### Step 3: create account address
@@ -86,7 +89,12 @@ const addressPromise = accountPromise.then(account => {
 ### Step 4: create asset
 
 ```javascript
-const definition = {name: "GOLD", symobol: "GOLD", decimals: 8, description: {}}
+const definition = {
+  name: "GOLD",
+  symobol: "GOLD",
+  decimals: 8,
+  description: {}
+}
 const assetPromise = keyPromise.then(key => {
   return client.assets.create([key.xpub], 1, 'asset', definition)
 })
@@ -97,7 +105,11 @@ const assetPromise = keyPromise.then(key => {
 #### First, build the transaction
 
 ```javascript
-const buildPromise = Promise.all([accountPromise, addressPromise, assetPromise]).then(([account, address, asset]) => {
+const buildPromise = Promise.all([
+  accountPromise,
+  addressPromise,
+  assetPromise]
+  ).then(([account, address, asset]) => {
   const issueAction = {
     amount: 10000000000,
     asset_alias: asset.alias,
@@ -118,7 +130,8 @@ const buildPromise = Promise.all([accountPromise, addressPromise, assetPromise])
     address: address.address
   }
   
-  return client.transactions.build(null, [issueAction, gasAction, controlAction])
+  return client.transactions.build(null,
+  [issueAction, gasAction, controlAction])
 })
 
 ```
