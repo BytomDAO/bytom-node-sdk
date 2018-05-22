@@ -82,9 +82,11 @@ const accountPromise = keyPromise.then(key => {
 
 ### Step 3: create account address
 
+```javascript
 const addressPromise = accountPromise.then(account => {
   return client.accounts.createReceiverById(account.id)
 })
+```
 
 ### Step 4: create asset
 
