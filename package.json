@@ -1,12 +1,20 @@
 {
-  "name": "bytom-node-sdk",
+  "name": "bytom-sdk",
   "version": "1.0.0",
   "description": "node sdk to interact with bytomd",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bytom/node-sdk.git"
+  },
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=4.7"
+  },
   "scripts": {
     "docs": "jsdoc -c jsdoc.conf.json",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
