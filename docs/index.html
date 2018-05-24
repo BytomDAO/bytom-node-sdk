@@ -93,40 +93,51 @@
 
 
     <section class="readme-section">
-        <article><h1>Bytom Node.js SDK</h1><h2>Terminology</h2><h3><a href="https://bytom-node-sdk.github.io/global.html#Key__anchor">Keys</a></h3><p>Cryptographic keys are the primary authorization mechanism on a blockchain.</p>
+        <article><h1>Bytom Node.js SDK</h1><h2>Terminology</h2><h3><a href="https://bytom.github.io/node-sdk/global.html#Key__anchor">Keys</a></h3><p>Cryptographic keys are the primary authorization mechanism on a blockchain.</p>
 <p>To create accounts or assets, xpub of keys are required. With this sdk, we can
 <code>create/delete/list/resetPassword</code> the key. Please check the 
-<a href="https://bytom-node-sdk.github.io/module-KeysApi.html">API doc</a> if you want
+<a href="https://bytom.github.io/node-sdk/module-KeysApi.html">API doc</a> if you want
 to operate with keys.</p>
-<h3><a href="https://bytom-node-sdk.github.io/global.html#Account__anchor">Account</a></h3><p>An account is an object in Bytom that tracks ownership of assets on a blockchain. 
+<h3><a href="https://bytom.github.io/node-sdk/global.html#Account__anchor">Account</a></h3><p>An account is an object in Bytom that tracks ownership of assets on a blockchain. 
 It's defined under one Bytom node created with one or serveral keys.  </p>
-<p><a href="https://bytom-node-sdk.github.io/module-AccountsApi.html">Related API</a></p>
-<h3><a href="https://bytom-node-sdk.github.io/global.html#Asset__anchor">Asset</a></h3><p>An asset is a type of value that can be issued on a blockchain. All units of
+<p><a href="https://bytom.github.io/node-sdk/module-AccountsApi.html">Related API</a></p>
+<h3><a href="https://bytom.github.io/node-sdk/global.html#Asset__anchor">Asset</a></h3><p>An asset is a type of value that can be issued on a blockchain. All units of
 a given asset are fungible. Units of an asset can be transacted directly
 between parties without the involvement of the issuer.</p>
-<p><a href="https://bytom-node-sdk.github.io/module-AssetsApi.html">Related API</a></p>
-<h3><a href="https://bytom-node-sdk.github.io/global.html#Transaction__anchor">Transaction</a></h3><p>Blockchain is chain of blocks, while block consists of numbers of transactions.</p>
-<p><a href="https://bytom-node-sdk.github.io/module-TransactionsApi.html">Related API</a></p>
-<h3><a href="https://bytom-node-sdk.github.io/global.html#UnspentOutput__anchor">Unspent Output(UTXO)</a></h3><p>Bytom is UTXO based blockchain. One transaction spend some UTXOs, and produces new UTXOs.</p>
-<p><a href="https://bytom-node-sdk.github.io/module-UnspentOutputsApi.html">Related API</a></p>
-<h3><a href="https://bytom-node-sdk.github.io/global.html#Balance__anchor">Balance</a></h3><p>Any balance on the blockchain is simply a summation of UTXOs. In one bytomd, balance means
+<p><a href="https://bytom.github.io/node-sdk/module-AssetsApi.html">Related API</a></p>
+<h3><a href="https://bytom.github.io/node-sdk/global.html#Transaction__anchor">Transaction</a></h3><p>Blockchain is chain of blocks, while block consists of numbers of transactions.</p>
+<p><a href="https://bytom.github.io/node-sdk/module-TransactionsApi.html">Related API</a></p>
+<h3><a href="https://bytom.github.io/node-sdk/global.html#UnspentOutput__anchor">Unspent Output(UTXO)</a></h3><p>Bytom is UTXO based blockchain. One transaction spend some UTXOs, and produces new UTXOs.</p>
+<p><a href="https://bytom.github.io/node-sdk/module-UnspentOutputsApi.html">Related API</a></p>
+<h3><a href="https://bytom.github.io/node-sdk/global.html#Balance__anchor">Balance</a></h3><p>Any balance on the blockchain is simply a summation of UTXOs. In one bytomd, balance means
 summation of UTXOs of one account.</p>
-<p><a href="https://bytom-node-sdk.github.io/module-BalancesApi.html">Related API</a></p>
-<h2>Usage</h2><h3>In your code</h3><pre class="prettyprint source"><code>const bytom = require('bytom-sdk')
+<p><a href="https://bytom.github.io/node-sdk/module-BalancesApi.html">Related API</a></p>
+<h2>Usage</h2><h3>In your code</h3><pre class="prettyprint source lang-javascript"><code>const bytom = require('bytom-sdk')
 const url = 'http://localhost:9888'
 
-// access token is required when client is not in same origin with the request bytom node
+// access token is required when client is not in same origin
+// with the request bytom node
 const accessToken = ''
 
 const client = new bytom.Client(url, accessToken)</code></pre><h2>Interaction with bytom</h2><p>We will walk you through the process to issue some assets.</p>
 <h3>Step 1: create a key</h3><pre class="prettyprint source lang-javascript"><code>const keyPromise = client.keys.create('alias', 'password')</code></pre><p>It will create a key whose alias is 'alias' while password is 'password'.</p>
-<h3>Step 2: create a account</h3><pre class="prettyprint source lang-javascript"><code>const accountPromise = keyPromise.then(key => client.accounts.create([key.xpub], 1, 'account'))</code></pre><h3>Step 3: create account address</h3><p>const addressPromise = accountPromise.then(account =&gt; {
+<h3>Step 2: create a account</h3><pre class="prettyprint source lang-javascript"><code>const accountPromise = keyPromise.then(key => {
+ client.accounts.create([key.xpub], 1, 'account')
+})</code></pre><h3>Step 3: create account address</h3><pre class="prettyprint source lang-javascript"><code>const addressPromise = accountPromise.then(account => {
   return client.accounts.createReceiverById(account.id)
-})</p>
-<h3>Step 4: create asset</h3><pre class="prettyprint source lang-javascript"><code>const definition = {name: &quot;GOLD&quot;, symobol: &quot;GOLD&quot;, decimals: 8, description: {}}
+})</code></pre><h3>Step 4: create asset</h3><pre class="prettyprint source lang-javascript"><code>const definition = {
+  name: &quot;GOLD&quot;,
+  symobol: &quot;GOLD&quot;,
+  decimals: 8,
+  description: {}
+}
 const assetPromise = keyPromise.then(key => {
   return client.assets.create([key.xpub], 1, 'asset', definition)
-})</code></pre><h3>Step 5: issue asset</h3><h4>First, build the transaction</h4><pre class="prettyprint source lang-javascript"><code>const buildPromise = Promise.all([accountPromise, addressPromise, assetPromise]).then(([account, address, asset]) => {
+})</code></pre><h3>Step 5: issue asset</h3><h4>First, build the transaction</h4><pre class="prettyprint source lang-javascript"><code>const buildPromise = Promise.all([
+  accountPromise,
+  addressPromise,
+  assetPromise]
+  ).then(([account, address, asset]) => {
   const issueAction = {
     amount: 10000000000,
     asset_alias: asset.alias,
@@ -147,7 +158,8 @@ const assetPromise = keyPromise.then(key => {
     address: address.address
   }
 
-  return client.transactions.build(null, [issueAction, gasAction, controlAction])
+  return client.transactions.build(null,
+  [issueAction, gasAction, controlAction])
 })
 </code></pre><h4>Second, sign the transaction</h4><pre class="prettyprint source lang-javascript"><code>const signPromise = buildPromise.then(transactionTemplate => {
   return client.transactions.sign(transactionTemplate, 'password')
@@ -199,7 +211,7 @@ const assetPromise = keyPromise.then(key => {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-05-21T13:04:20+08:00
+		on 2018-05-24T14:05:00+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
