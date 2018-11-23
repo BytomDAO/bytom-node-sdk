@@ -2,48 +2,48 @@
 
 ## Terminology
 
-### [Keys](https://bytom.github.io/node-sdk/global.html#Key__anchor)
+### [Keys](https://bytom.github.io/bytom-node-sdk/global.html#Key__anchor)
 
 Cryptographic keys are the primary authorization mechanism on a blockchain.
 
 To create accounts or assets, xpub of keys are required. With this sdk, we can
 `create/delete/list/resetPassword` the key. Please check the 
-[API doc](https://bytom.github.io/node-sdk/module-KeysApi.html) if you want
+[API doc](https://bytom.github.io/bytom-node-sdk/module-KeysApi.html) if you want
 to operate with keys.
 
-### [Account](https://bytom.github.io/node-sdk/global.html#Account__anchor)
+### [Account](https://bytom.github.io/bytom-node-sdk/global.html#Account__anchor)
 
 An account is an object in Bytom that tracks ownership of assets on a blockchain. 
 It's defined under one Bytom node created with one or serveral keys.  
 
-[Related API](https://bytom.github.io/node-sdk/module-AccountsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-AccountsApi.html)
 
-### [Asset](https://bytom.github.io/node-sdk/global.html#Asset__anchor)
+### [Asset](https://bytom.github.io/bytom-node-sdk/global.html#Asset__anchor)
 
 An asset is a type of value that can be issued on a blockchain. All units of
 a given asset are fungible. Units of an asset can be transacted directly
 between parties without the involvement of the issuer.
 
-[Related API](https://bytom.github.io/node-sdk/module-AssetsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-AssetsApi.html)
 
-### [Transaction](https://bytom.github.io/node-sdk/global.html#Transaction__anchor)
+### [Transaction](https://bytom.github.io/bytom-node-sdk/global.html#Transaction__anchor)
 
 Blockchain is chain of blocks, while block consists of numbers of transactions.
 
-[Related API](https://bytom.github.io/node-sdk/module-TransactionsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-TransactionsApi.html)
 
-### [Unspent Output(UTXO)](https://bytom.github.io/node-sdk/global.html#UnspentOutput__anchor)
+### [Unspent Output(UTXO)](https://bytom.github.io/bytom-node-sdk/global.html#UnspentOutput__anchor)
 
 Bytom is UTXO based blockchain. One transaction spend some UTXOs, and produces new UTXOs.
 
-[Related API](https://bytom.github.io/node-sdk/module-UnspentOutputsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-UnspentOutputsApi.html)
 
-### [Balance](https://bytom.github.io/node-sdk/global.html#Balance__anchor)
+### [Balance](https://bytom.github.io/bytom-node-sdk/global.html#Balance__anchor)
 
 Any balance on the blockchain is simply a summation of UTXOs. In one bytomd, balance means
 summation of UTXOs of one account.
 
-[Related API](https://bytom.github.io/node-sdk/module-BalancesApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-BalancesApi.html)
 
 ## Usage
 
