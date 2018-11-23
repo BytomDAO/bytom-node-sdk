@@ -1,5 +1,6 @@
 import axios from 'axios'
 import btoa from 'btoa'
+const errors = require('./errors')
 
 class Connection {
   constructor(baseUrl, token = '') {
@@ -24,13 +25,16 @@ class Connection {
 
     return axios.request(config).then(resp => {
       if (resp.data.status === 'fail') {
-        throw resp.data.msg
+        throw errors.formatErrMsg(resp.data)
       } else if (resp.data.status === 'success') {
         return resp.data.data
       }
 
       return resp.data
     })
+      .catch(error=>{
+        throw error
+      })
   }
 }
 

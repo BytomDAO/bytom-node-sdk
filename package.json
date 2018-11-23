@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bytom/node-sdk.git"
+    "url": "https://github.com/Bytom/bytom-node-sdk.git"
   },
   "license": "Apache-2.0",
   "engines": {
@@ -14,13 +14,19 @@
   "scripts": {
     "docs": "jsdoc -c jsdoc.conf.json",
     "build": "babel src --out-dir dist",
+    "test": "mocha testCompiled",
+    "pretest": "npm run build && babel test --out-dir testCompiled",
     "prepublish": "npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "ink-docstrap": "^1.3.2",
-    "jsdoc": "^3.5.5"
+    "jsdoc": "^3.5.5",
+    "mocha": "^3.2.0",
+    "uuid": "~3.0.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
