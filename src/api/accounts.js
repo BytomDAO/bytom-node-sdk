@@ -41,6 +41,33 @@
  */
 const accountsApi = (connection) => {
   /**
+   * @typedef {Object} createRequest
+   *
+   * @property {String} [alias]
+   * User specified, unique identifier.
+   *
+   * @property {String[]} root_xpubs
+   * The list of keys used to create control programs under the account.
+   *
+   * @property {Number} quorum
+   * The number of keys required to sign transactions for the account.
+   */
+
+
+  /**
+   * @typedef {Object} createReceiverRequest
+   *
+   * @property {String} [account_alias]
+   * The unique alias of the account. accountAlias or accountId must be
+   * provided.
+   *
+   * @property {String} [account_id]
+   * The unique ID of the account. accountAlias or accountId must be
+   * provided.
+   */
+
+
+  /**
    * @typedef {String[]} xpubs
    * The list of keys used to create control programs under the account.
    */
@@ -74,16 +101,10 @@ const accountsApi = (connection) => {
     /**
      * Create a new account.
      *
-     * @param {module:AccountsApi~xpubs} xpubs - Xpub of Keys for account creation.
-     * @param {module:AccountsApi~quorum} quorum - The number of keys required to sign transactions for the account.
-     * @param {module:AccountsApi~alias} alias - Account alias.
+     * @param {module:AccountsApi~createRequest} params - Parameters for account creation.
      * @returns {Promise<Account>} Newly created account response.
      */
-    create: (xpubs, quorum, alias) => connection.request('/create-account', {
-      root_xpubs: xpubs,
-      quorum,
-      alias
-    }),
+    create: (params) => connection.request('/create-account', params),
 
     /**
      * List all accounts in the target Bytom node.
@@ -95,31 +116,64 @@ const accountsApi = (connection) => {
     /**
      * List accounts whose id is the given one.
      *
-     * @param {module:AccountsApi~id} id - Account id.
+     * @param {Object} params={} - Filter and pagination information.
+     * @param {String} params.id - Account id.
+     * @param {String} params.alias - Account alias.
      * @return {Promise<Array<Account>>} Target accounts promise.
      */
-    listById: (id) => connection.request('/list-accounts', {id}),
+    list: (params) => connection.request('/list-accounts', params),
 
     /**
      * Create account receiver.
      *
-     * @param {module:AccountsApi~id} accountId - Id for the target account.
+     * @param {module:AccountsApi~createReceiverRequest} params - Parameters for receiver creation.
      * @return {Promise<Receiver>} Target receiver.
      */
-    createReceiverById: (accountId) => connection.request('/create-account-receiver', {account_id: accountId}),
+    createReceiver: (params) => connection.request('/create-account-receiver', params),
 
     /**
      * List all addresses for one account.
-     * @param {module:AccountsApi~id} accountId - Id for the target account.
+     *
+     * @param {Object} params={} - Filter and pagination information.
+     * @param {String} params.account_alias, alias of account.
+     * @param {String} params.account_id, id of account.
+     * @param {Number} params.from, the start position of first address
+     * @param {Number} params.count, the number of returned.
      * @return {Promise<module:AccountApi~AddressInfo>} target addresses response.
+     *
      */
-    listAddressesById: (accountId) => connection.request('/list-addresses', {account_id: accountId}),
+    listAddresses: (params) => connection.request('/list-addresses', params),
+
+    /**
+     * List all addresses for one account.
+     *
+     * @param {Object} params={} - Filter and pagination information.
+     * @param {String} params.account_alias, alias of account.
+     * @param {String} params.account_id, id of account.
+     * @param {Number} params.from, the start position of first address
+     * @param {Number} params.count, the number of returned.
+     * @return {Promise<module:AccountApi~AddressInfo>} target addresses response.
+     *
+     */
+    validateAddresses: (address) => connection.request('/validate-addresses', {address: address}),
 
     /**
      * Delete account.
-     * @param {module:AccountsApi~id} id - Target account id.
+     * @param {Object} params={} - Deletion information.
+     * @param {String} params.account_id - Account id.
+     * @param {String} params.account_alias - Account alias.
      */
-    deleteById: (id) => connection.request('/delete-account', {account_info: id})
+    delete: (params) => connection.request('/delete-account', params),
+
+    /**
+     * Update account alias.
+     *
+     * @param {object} params - Parameters for account update.
+     * @param {String} params.account_id - id of account.
+     * @param {String} params.account_alias - alias of account.
+     * @param {String} params.new_alias - new alias of account.
+     */
+    updateAlias: (params) => connection.request('/update-account-alias', params)
   }
 }
 

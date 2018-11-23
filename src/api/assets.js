@@ -36,54 +36,42 @@
  * @module AssetsApi
  */
 const assetsApi = (connection) => {
-  /**
-   * @typedef {String[]} xpubs
-   * The list of keys used to issue units of the asset.
-   */
 
   /**
-   * @typedef {String} [alias]
+   * @typedef {Object} createRequest
+   *
+   * @property {String} [alias]
    * User specified, unique identifier.
-   */
-
-  /**
-   * @typedef {Number} quorum
-   * The number of signatures required to issue new units of the asset.
-   */
-
-  /**
-   * @typedef {String} id
-   * Unique account identifier in one Bytom node.
-   */
-
-  /**
-   * @typedef {Object} definition
-   * User-specified, asset attributes accross Bytom blockchain network.
+   *
+   * @property {Object} [defintion]
+   * User-specified, arbitrary/unstructured data visible across blockchain networks.
+   *
+   * @property {String[]} root_xpubs
+   * Optional. The list of keys used to create the asset.
+   *
+   * @property {Number} quorum
+   * Optional. the default value is 1, threshold of keys that must sign a transaction to spend asset units controlled by the account.
+   *
+   * @property {String} [issuance_program]
+   * Optional. User-specified, contract program.
+   *
    */
 
   return {
     /**
      * Create a new asset.
      *
-     * @param {module:AssetsApi~xpubs} xpubs - Keys for asseet creation.
-     * @param {module:AssetsApi~quorum} quorum - The number of keys required to sign transactions for the account.
-     * @param {module:AssetsApi~alias} alias - Asset alias.
-     * @param {module:AssetsApi~definition} definition - Asset definition.
+     * @param {module:AssetsApi~createRequest} params - Parameters for asset creation.
      * @returns {Promise<Asset>} Newly created asset.
      */
-    create: (xpubs, quorum, alias, definition) => connection.request('/create-asset', {
-      alias,
-      quorum,
-      definition,
-      root_xpubs: xpubs
-    }),
+    create: (params) => connection.request('/create-asset', params),
 
     /**
      * List all assets in one Bytom node.
      *
      * @returns {Promise<Array<Asset>>} target assets.
      */
-    list: () => connection.request('/list-assets', {}),
+    listAll: () => connection.request('/list-assets', {}),
 
     /**
      * Get asset by the asset id.
@@ -91,15 +79,16 @@ const assetsApi = (connection) => {
      * @param {module:AssetsApi~id} id - Asset id.
      * @returns {Promise<Asset>} target asset.
      */
-    getById: (id) => connection.request('/get-asset', {id}),
+    list: (id) => connection.request('/get-asset', {id}),
 
     /**
      * Update asset alias.
      *
-     * @param {module:AssetsApi~id} id - Asset id.
-     * @param {String} newAlias - new alias.
+     * @param {object} params - Parameters for asset update.
+     * @param {String} params.id - id of asset.
+     * @param {String} params.alias - new alias of asset.
      */
-    updateAlias: (id, newAlias) => connection.request('/update-asset-alias', {id, alias: newAlias})
+    updateAlias: (params) => connection.request('/update-asset-alias', params)
   }
 }
 
