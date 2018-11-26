@@ -39,7 +39,7 @@ describe('Access token', () => {
     return createToken()
       .then((token) => {
         tokenId = token.id
-        return client.accessTokens.list()
+        return client.accessTokens.listAll()
       })
       .then(resp => expect(resp.map(item => item.id)).to.contain(tokenId))
   })
@@ -63,7 +63,7 @@ describe('Access token', () => {
         tokenId = token.id
         return client.accessTokens.delete(tokenId)
       })
-      .then(() => client.accessTokens.list())
+      .then(() => client.accessTokens.listAll())
       .then(resp => expect(resp.map(item => item.id)).to.not.contain(tokenId))
   })
 
