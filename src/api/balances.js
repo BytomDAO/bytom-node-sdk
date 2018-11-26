@@ -33,9 +33,9 @@ const balancesApi = (connection) => {
     /**
      * Get asset balances by account.
      *
-     * @param {Object} params={} - Filter and pagination information.
-     * @param {String} params.account_id, account id.
-     * @param {String} params.account_alias, name of account.
+     * @param {Object} params - Filter and pagination information.
+     * @param {String} params.account_id account id.
+     * @param {String} params.account_alias name of account.
      * @returns {Promise<Array<Balance>>} The result balances.
      */
     list: (params) => connection.request('/list-balances', params),

@@ -1,5 +1,5 @@
 /**
- * Access tokens are `name:secret-token` pairs that are granted authorization for accessing Chain Core features.
+ * Access tokens are `name:secret-token` pairs that are granted authorization for accessing Bytom Core features.
  *
  * @typedef {Object} AccessToken
  * @global
@@ -36,12 +36,12 @@ const accessTokensApi = (connection) => {
      *
      * @returns {Promise<Array<AccessToken>>} All access tokens.
      */
-    list: () => connection.request('/list-access-tokens', {}),
+    listAll: () => connection.request('/list-access-tokens', {}),
 
     /**
      * Delete the target access token.
      *
-     * @param {String} id- The to be deleted token id.
+     * @param {String} id The to be deleted token id.
      */
     delete: (id) => connection.request('/delete-access-token', {id}),
 
@@ -50,7 +50,7 @@ const accessTokensApi = (connection) => {
      *
      * @param {Object} params - Parameters for access token check.
      * @param {String} params.id - The to be deleted token id.
-     * @param {String} params.secret, secret of token, the second part of the colon division for token.
+     * @param {String} params.secret secret of token, the second part of the colon division for token.
      */
     check: (params) => connection.request('/check-access-token', params),
   }

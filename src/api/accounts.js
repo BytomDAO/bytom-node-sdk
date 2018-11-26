@@ -116,7 +116,7 @@ const accountsApi = (connection) => {
     /**
      * List accounts whose id is the given one.
      *
-     * @param {Object} params={} - Filter and pagination information.
+     * @param {Object} params - Filter and pagination information.
      * @param {String} params.id - Account id.
      * @param {String} params.alias - Account alias.
      * @return {Promise<Array<Account>>} Target accounts promise.
@@ -134,32 +134,28 @@ const accountsApi = (connection) => {
     /**
      * List all addresses for one account.
      *
-     * @param {Object} params={} - Filter and pagination information.
-     * @param {String} params.account_alias, alias of account.
-     * @param {String} params.account_id, id of account.
-     * @param {Number} params.from, the start position of first address
-     * @param {Number} params.count, the number of returned.
+     * @param {Object} params - Filter and pagination information.
+     * @param {String} params.account_alias alias of account.
+     * @param {String} params.account_id id of account.
+     * @param {Number} params.from the start position of first address
+     * @param {Number} params.count the number of returned.
      * @return {Promise<module:AccountApi~AddressInfo>} target addresses response.
      *
      */
     listAddresses: (params) => connection.request('/list-addresses', params),
 
     /**
-     * List all addresses for one account.
+     * Validate an address for one account.
      *
-     * @param {Object} params={} - Filter and pagination information.
-     * @param {String} params.account_alias, alias of account.
-     * @param {String} params.account_id, id of account.
-     * @param {Number} params.from, the start position of first address
-     * @param {Number} params.count, the number of returned.
-     * @return {Promise<module:AccountApi~AddressInfo>} target addresses response.
+     * @param {string} address - Filter and pagination information.
+     * @return {Promise<Object>} weather the address is local and is valid.
      *
      */
     validateAddresses: (address) => connection.request('/validate-addresses', {address: address}),
 
     /**
      * Delete account.
-     * @param {Object} params={} - Deletion information.
+     * @param {Object} params - Deletion information.
      * @param {String} params.account_id - Account id.
      * @param {String} params.account_alias - Account alias.
      */

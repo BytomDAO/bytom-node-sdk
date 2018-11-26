@@ -115,17 +115,16 @@ class TransactionBuilder {
 
 
     /**
-     * nteger of the time to live in milliseconds, it means utxo will be reserved(locked) for
+     * Integer of the time to live in milliseconds, it means utxo will be reserved(locked) for
      * builded transaction in this time range, if the transaction will not to be submitted into block,
      * it will be auto unlocked for build transaction again after this ttl time. it will be set to
      * 5 minutes(300 seconds) defaultly when ttl is 0.
      * @type {Integer}
      */
-    // this.ttl = 0
-    this.ttl = 1
+    this.ttl = 0
 
     /**
-     * Base transaction provided by a third party.
+     * Base data for the transaction, default is null.
      * @type {Object}
      */
     this.baseTransaction = null
@@ -198,12 +197,12 @@ class TransactionBuilder {
   }
 
   /**
-   * Add an action that spends an unspent output.
+   * Add an action that spends an account unspent output.
    *
    * @param {Object} params - Action parameters.
    * @param {String} params.output_id - ID of the transaction output to be spent.
    */
-  spendUnspentOutput(params) {
+  spendAccountUnspentOutput(params) {
     this.actions.push(Object.assign({}, params, {type: 'spend_account_unspent_output'}))
   }
 
@@ -230,6 +229,12 @@ class TransactionBuilder {
  * @module TransactionsApi
  */
 const transactionsApi = connection => {
+
+  /**
+   * @callback builderCallback
+   * @param {TransactionBuilder} builder
+   */
+
   /**
    * @typedef {Object} Action
    * Basic unit to build a transaction.
@@ -276,7 +281,6 @@ const transactionsApi = connection => {
      *
      * @param {module:TransactionsApi~builderCallback} builderBlock - Function that adds desired actions
      *                                         to a given builder object.
-     * @param {objectCallback} [callback] - Optional callback. Use instead of Promise return value as desired.
      * @returns {Promise<Object>} Unsigned transaction template, or error.
      */
     build: (builderBlock) => {
@@ -296,8 +300,8 @@ const transactionsApi = connection => {
      * Sign transaction.
      *
      * @param {Object} params - The built transaction template.
-     * @param {String} params.password, signature of the password.
-     * @param {Object} params.transaction, builded transaction.
+     * @param {String} params.password signature of the password.
+     * @param {Object} params.transaction builded transaction.
      * @returns {Promise<module:TransactionsApi~SignResult>} - Sign result.
      */
     sign: (params) => connection.request('/sign-transaction', params),
@@ -327,7 +331,7 @@ const transactionsApi = connection => {
     listAll: () => connection.request('/list-transactions', {unconfirmed: true}),
 
     /**
-     * List local transactions by id.
+     * List local transactions by id or filter condition.
      *
      * @param {Object} params - Transaction filter params.
      * @param {String} params.id - transaction id, hash of transaction.

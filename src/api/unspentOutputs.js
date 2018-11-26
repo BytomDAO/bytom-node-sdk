@@ -63,14 +63,14 @@ const unspentOutputsAPI = (connection) => {
     /**
      * Get target unspent outputs.
      *
-     * @param {Object} params={} - Filter and pagination information.
+     * @param {Object} params - Filter and pagination information.
      * @param {String} params.id - Unspent output id.
-     * @param {Boolean} params.unconfirmed, is include unconfirmed utxo
-     * @param {Boolean} params.smart_contract, is contract utxo
-     * @param {Integer} params.from, the start position of first utxo
-     * @param {Integer} params.count, the number of returned
-     * @param {String} params.account_id, account id.
-     * @param {String} params.account_alias, name of account.
+     * @param {Boolean} params.unconfirmed is include unconfirmed utxo
+     * @param {Boolean} params.smart_contract is contract utxo
+     * @param {Integer} params.from the start position of first utxo
+     * @param {Integer} params.count the number of returned
+     * @param {String} params.account_id account id.
+     * @param {String} params.account_alias name of account.
      * @returns {Promise<Array<UnspentOutput>>} Target unspent outputs.
      */
     list: (params) => connection.request('list-unspent-outputs', params)

@@ -50,7 +50,7 @@ const keysApi = connection => {
     listAll: () => connection.request('/list-keys'),
 
     /**
-     * @param {Object} params={} - Deletion information.
+     * @param {Object} params - Deletion information.
      * @param {String} params.xpub - Hex-encoded string representation of the key.
      * @param {String} params.password - Key password.
      */
@@ -59,7 +59,7 @@ const keysApi = connection => {
     /**
      * Reset key password.
      *
-     * @param {Object} params={} - Password checking information.
+     * @param {Object} params - Password checking information.
      * @param {String} params.xpub - Hex-encoded string representation of the key.
      * @param {String} params.password - password.
      */
@@ -68,7 +68,7 @@ const keysApi = connection => {
     /**
      * Reset key password.
      *
-     * @param {Object} params={} - Key password reset information.
+     * @param {Object} params - Key password reset information.
      * @param {String} params.xpub - Hex-encoded string representation of the key.
      * @param {String} params.oldPassword - Old password.
      * @param {String} params.newPassword - New password.
