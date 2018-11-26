@@ -31,11 +31,21 @@
 const balancesApi = (connection) => {
   return {
     /**
-     * Get all asset balances of all accounts.
+     * Get asset balances by account.
+     *
+     * @param {Object} params - Filter and pagination information.
+     * @param {String} params.account_id account id.
+     * @param {String} params.account_alias name of account.
+     * @returns {Promise<Array<Balance>>} The result balances.
+     */
+    list: (params) => connection.request('/list-balances', params),
+
+    /**
+     * List all assets Balances in one Bytom node.
      *
      * @returns {Promise<Array<Balance>>} The result balances.
      */
-    list: () => connection.request('/list-balances', {})
+    listAll: () => connection.request('/list-balances', {})
   }
 }
 

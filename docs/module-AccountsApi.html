@@ -33,7 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-BlockAPI.html">BlockAPI</a></li><li><a href="module-ConfigApi.html">ConfigApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="TransactionBuilder.html">TransactionBuilder</a></li>
 				</ul>
 			</li>
 			
@@ -150,7 +157,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(xpubs, quorum, alias)</h4>
+    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(params)</h4>
     
     
 </dt>
@@ -193,13 +200,13 @@
 
         <tr>
             
-                <td class="name"><code>xpubs</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AccountsApi.html#~xpubs">module:AccountsApi~xpubs</a></span>
+<span class="param-type"><a href="module-AccountsApi.html#~createRequest">module:AccountsApi~createRequest</a></span>
 
 
 
@@ -210,55 +217,7 @@
 
             
 
-            <td class="description last"><p>Xpub of Keys for account creation.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>quorum</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="module-AccountsApi.html#~quorum">module:AccountsApi~quorum</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The number of keys required to sign transactions for the account.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>alias</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="module-AccountsApi.html#~alias">module:AccountsApi~alias</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Account alias.</p></td>
+            <td class="description last"><p>Parameters for account creation.</p></td>
         </tr>
 
     
@@ -350,7 +309,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~createReceiverById"><span class="type-signature">&lt;inner> </span>createReceiverById(accountId)</h4>
+    <h4 class="name" id="~createReceiver"><span class="type-signature">&lt;inner> </span>createReceiver(params)</h4>
     
     
 </dt>
@@ -393,13 +352,13 @@
 
         <tr>
             
-                <td class="name"><code>accountId</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AccountsApi.html#~id">module:AccountsApi~id</a></span>
+<span class="param-type"><a href="module-AccountsApi.html#~createReceiverRequest">module:AccountsApi~createReceiverRequest</a></span>
 
 
 
@@ -410,7 +369,7 @@
 
             
 
-            <td class="description last"><p>Id for the target account.</p></td>
+            <td class="description last"><p>Parameters for receiver creation.</p></td>
         </tr>
 
     
@@ -502,7 +461,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~deleteById"><span class="type-signature">&lt;inner> </span>deleteById(id)</h4>
+    <h4 class="name" id="~delete"><span class="type-signature">&lt;inner> </span>delete(params)</h4>
     
     
 </dt>
@@ -545,13 +504,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AccountsApi.html#~id">module:AccountsApi~id</a></span>
+<span class="param-type">Object</span>
 
 
 
@@ -562,7 +521,81 @@
 
             
 
-            <td class="description last"><p>Target account id.</p></td>
+            <td class="description last"><p>Deletion information.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>account_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Account id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>account_alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Account alias.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -630,7 +663,233 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~listAddressesById"><span class="type-signature">&lt;inner> </span>listAddressesById(accountId)</h4>
+    <h4 class="name" id="~list"><span class="type-signature">&lt;inner> </span>list(params)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>List accounts whose id is the given one.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Filter and pagination information.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Account id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Account alias.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Target accounts promise.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array.&lt;<a href="global.html#Account">Account</a>>></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~listAddresses"><span class="type-signature">&lt;inner> </span>listAddresses(params)</h4>
     
     
 </dt>
@@ -673,13 +932,13 @@
 
         <tr>
             
-                <td class="name"><code>accountId</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AccountsApi.html#~id">module:AccountsApi~id</a></span>
+<span class="param-type">Object</span>
 
 
 
@@ -690,7 +949,129 @@
 
             
 
-            <td class="description last"><p>Id for the target account.</p></td>
+            <td class="description last"><p>Filter and pagination information.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>account_alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>alias of account.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>account_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>id of account.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>from</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the start position of first address</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the number of returned.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -884,7 +1265,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~listById"><span class="type-signature">&lt;inner> </span>listById(id)</h4>
+    <h4 class="name" id="~updateAlias"><span class="type-signature">&lt;inner> </span>updateAlias(params)</h4>
     
     
 </dt>
@@ -892,7 +1273,7 @@
 
     
     <div class="description">
-        <p>List accounts whose id is the given one.</p>
+        <p>Update account alias.</p>
     </div>
     
 
@@ -927,13 +1308,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AccountsApi.html#~id">module:AccountsApi~id</a></span>
+<span class="param-type">object</span>
 
 
 
@@ -944,7 +1325,233 @@
 
             
 
-            <td class="description last"><p>Account id.</p></td>
+            <td class="description last"><p>Parameters for account update.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>account_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>id of account.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>account_alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>alias of account.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>new_alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>new alias of account.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~validateAddresses"><span class="type-signature">&lt;inner> </span>validateAddresses(address)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Validate an address for one account.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>address</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Filter and pagination information.</p></td>
         </tr>
 
     
@@ -1008,7 +1615,7 @@
     
             
 <div class="param-desc">
-    <p>Target accounts promise.</p>
+    <p>weather the address is local and is valid.</p>
 </div>
 
 
@@ -1019,7 +1626,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Array.&lt;<a href="global.html#Account">Account</a>>></span>
+<span class="param-type">Promise.&lt;Object></span>
 
 
 
@@ -1260,6 +1867,360 @@
 
     
 <dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="~createReceiverRequest">
+    <h4 id="~createReceiverRequest">createReceiverRequest</h4>
+
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>account_alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The unique alias of the account. accountAlias or accountId must be
+provided.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>account_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The unique ID of the account. accountAlias or accountId must be
+provided.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="~createRequest">
+    <h4 id="~createRequest">createRequest</h4>
+
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>User specified, unique identifier.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>root_xpubs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The list of keys used to create control programs under the account.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>quorum</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The number of keys required to sign transactions for the account.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
     
 
 	
@@ -1562,7 +2523,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-05-24T14:05:00+08:00
+		on 2018-11-26T16:28:32+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

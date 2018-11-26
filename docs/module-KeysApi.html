@@ -33,7 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-BlockAPI.html">BlockAPI</a></li><li><a href="module-ConfigApi.html">ConfigApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="TransactionBuilder.html">TransactionBuilder</a></li>
 				</ul>
 			</li>
 			
@@ -150,7 +157,209 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(alias, password)</h4>
+    <h4 class="name" id="~checkPassword"><span class="type-signature">&lt;inner> </span>checkPassword(params)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Reset key password.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Password checking information.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>xpub</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Hex-encoded string representation of the key.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>password.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(params)</h4>
     
     
 </dt>
@@ -193,13 +402,13 @@
 
         <tr>
             
-                <td class="name"><code>alias</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="module-KeysApi.html#~createRequest">module:KeysApi~createRequest</a></span>
 
 
 
@@ -210,31 +419,7 @@
 
             
 
-            <td class="description last"><p>User specified, unique identifier.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>password</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>User specified, key password.</p></td>
+            <td class="description last"><p>Parameters for asset creation.</p></td>
         </tr>
 
     
@@ -326,7 +511,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~delete"><span class="type-signature">&lt;inner> </span>delete(xpub, password)</h4>
+    <h4 class="name" id="~delete"><span class="type-signature">&lt;inner> </span>delete(params)</h4>
     
     
 </dt>
@@ -342,6 +527,49 @@
     
         <h5>Parameters:</h5>
         
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Deletion information.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
 <table class="params table table-striped">
     <thead>
@@ -413,6 +641,13 @@
     </tbody>
 </table>
 
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -474,7 +709,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~list"><span class="type-signature">&lt;inner> </span>list()</h4>
+    <h4 class="name" id="~listAll"><span class="type-signature">&lt;inner> </span>listAll()</h4>
     
     
 </dt>
@@ -576,7 +811,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~resetPassword"><span class="type-signature">&lt;inner> </span>resetPassword(xpub, oldPassword, newPassword)</h4>
+    <h4 class="name" id="~resetPassword"><span class="type-signature">&lt;inner> </span>resetPassword(params)</h4>
     
     
 </dt>
@@ -596,6 +831,49 @@
     
         <h5>Parameters:</h5>
         
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Key password reset information.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
 <table class="params table table-striped">
     <thead>
@@ -691,6 +969,13 @@
     </tbody>
 </table>
 
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -752,6 +1037,204 @@
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        <dl>
+                
+<hr>
+<dt class="name" id="~createRequest">
+    <h4 id="~createRequest">createRequest</h4>
+
+    
+</dt>
+<dd>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>User specified, unique identifier.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>password of the key.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>language</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>mnemonic language of the key.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            </dl>
+    
 
     
 </article>
@@ -798,7 +1281,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-05-24T14:05:00+08:00
+		on 2018-11-26T16:28:32+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

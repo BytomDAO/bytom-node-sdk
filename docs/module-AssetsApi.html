@@ -33,7 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-BlockAPI.html">BlockAPI</a></li><li><a href="module-ConfigApi.html">ConfigApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="TransactionBuilder.html">TransactionBuilder</a></li>
 				</ul>
 			</li>
 			
@@ -150,7 +157,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(xpubs, quorum, alias, definition)</h4>
+    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(params)</h4>
     
     
 </dt>
@@ -193,13 +200,13 @@
 
         <tr>
             
-                <td class="name"><code>xpubs</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AssetsApi.html#~xpubs">module:AssetsApi~xpubs</a></span>
+<span class="param-type"><a href="module-AssetsApi.html#~createRequest">module:AssetsApi~createRequest</a></span>
 
 
 
@@ -210,79 +217,7 @@
 
             
 
-            <td class="description last"><p>Keys for asseet creation.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>quorum</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="module-AssetsApi.html#~quorum">module:AssetsApi~quorum</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The number of keys required to sign transactions for the account.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>alias</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="module-AssetsApi.html#~alias">module:AssetsApi~alias</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Asset alias.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>definition</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="module-AssetsApi.html#~definition">module:AssetsApi~definition</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Asset definition.</p></td>
+            <td class="description last"><p>Parameters for asset creation.</p></td>
         </tr>
 
     
@@ -374,7 +309,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~getById"><span class="type-signature">&lt;inner> </span>getById(id)</h4>
+    <h4 class="name" id="~list"><span class="type-signature">&lt;inner> </span>list(id)</h4>
     
     
 </dt>
@@ -423,7 +358,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AssetsApi.html#~id">module:AssetsApi~id</a></span>
+<span class="param-type">module:AssetsApi~id</span>
 
 
 
@@ -526,7 +461,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~list"><span class="type-signature">&lt;inner> </span>list()</h4>
+    <h4 class="name" id="~listAll"><span class="type-signature">&lt;inner> </span>listAll()</h4>
     
     
 </dt>
@@ -628,7 +563,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~updateAlias"><span class="type-signature">&lt;inner> </span>updateAlias(id, newAlias)</h4>
+    <h4 class="name" id="~updateAlias"><span class="type-signature">&lt;inner> </span>updateAlias(params)</h4>
     
     
 </dt>
@@ -671,13 +606,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="module-AssetsApi.html#~id">module:AssetsApi~id</a></span>
+<span class="param-type">object</span>
 
 
 
@@ -688,14 +623,33 @@
 
             
 
-            <td class="description last"><p>Asset id.</p></td>
-        </tr>
+            <td class="description last"><p>Parameters for asset update.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>newAlias</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -712,7 +666,38 @@
 
             
 
-            <td class="description last"><p>new alias.</p></td>
+            <td class="description last"><p>id of asset.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>alias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>new alias of asset.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -785,87 +770,12 @@
         <dl>
                 
 <hr>
-<dt class="name" id="~alias">
-    <h4 id="~alias">alias</h4>
+<dt class="name" id="~createRequest">
+    <h4 id="~createRequest">createRequest</h4>
 
     
 </dt>
 <dd>
-    
-    <div class="description">
-        <p>User specified, unique identifier.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-            
-                
-<hr>
-<dt class="name" id="~definition">
-    <h4 id="~definition">definition</h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>User-specified, asset attributes accross Bytom blockchain network.</p>
-    </div>
     
 
     
@@ -885,217 +795,191 @@
 <dl class="details">
     
 
-	
+    <h5 class="subsection-title">Properties:</h5>
 
-	
+    <dl>
 
-	
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
+        <tr>
             
-                
-<hr>
-<dt class="name" id="~id">
-    <h4 id="~id">id</h4>
+                <td class="name"><code>alias</code></td>
+            
 
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Unique account identifier in one Bytom node.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
+            <td class="type">
+            
                 
 <span class="param-type">String</span>
 
 
 
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
+            
+            </td>
 
             
+                <td class="attributes">
                 
-<hr>
-<dt class="name" id="~quorum">
-    <h4 id="~quorum">quorum</h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The number of signatures required to issue new units of the asset.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
+                    &lt;optional><br>
                 
-<span class="param-type">Number</span>
 
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
+                
+                </td>
+            
 
             
+
+            <td class="description last"><p>User specified, unique identifier.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defintion</code></td>
+            
+
+            <td class="type">
+            
                 
-<hr>
-<dt class="name" id="~xpubs">
-    <h4 id="~xpubs">xpubs</h4>
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>User-specified, arbitrary/unstructured data visible across blockchain networks.</p></td>
+        </tr>
 
     
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The list of keys used to issue units of the asset.</p>
-    </div>
-    
 
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
+        <tr>
+            
+                <td class="name"><code>root_xpubs</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">Array.&lt;String></span>
 
 
 
-            </li>
-        </ul>
-    
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional. The list of keys used to create the asset.</p></td>
+        </tr>
 
     
-<dl class="details">
+
+        <tr>
+            
+                <td class="name"><code>quorum</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional. the default value is 1, threshold of keys that must sign a transaction to spend asset units controlled by the account.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>issuance_program</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional. User-specified, contract program.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
     
 
 	
@@ -1185,7 +1069,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-05-24T14:05:00+08:00
+		on 2018-11-26T16:28:32+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

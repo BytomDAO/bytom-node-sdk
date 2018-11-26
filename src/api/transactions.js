@@ -103,11 +103,138 @@
  */
 
 /**
+ * @class
+ * A convenience class for building transaction template objects.
+ */
+class TransactionBuilder {
+  /**
+   * constructor - return a new object used for constructing a transaction.
+   */
+  constructor() {
+    this.actions = []
+
+
+    /**
+     * Integer of the time to live in milliseconds, it means utxo will be reserved(locked) for
+     * builded transaction in this time range, if the transaction will not to be submitted into block,
+     * it will be auto unlocked for build transaction again after this ttl time. it will be set to
+     * 5 minutes(300 seconds) defaultly when ttl is 0.
+     * @type {Integer}
+     */
+    this.ttl = 0
+
+    /**
+     * Base data for the transaction, default is null.
+     * @type {Object}
+     */
+    this.baseTransaction = null
+  }
+
+  /**
+   * Add an action that issues assets.
+   *
+   * @param {Object} params - Action parameters.
+   * @param {String} params.assetId - Asset ID specifying the asset to be issued.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.assetAlias - Asset alias specifying the asset to be issued.
+   *                                      You must specify either an ID or an alias.
+   * @param {String} params.amount - Amount of the asset to be issued.
+   */
+  issue(params) {
+    this.actions.push(Object.assign({}, params, {type: 'issue'}))
+  }
+
+  /**
+   * Add an action that controls assets with an account specified by identifier.
+   *
+   * @param {Object} params - Action parameters.
+   *
+   * @param {String} params.asset_alias - Asset alias specifying the asset to be controlled.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.asset_id - Asset ID specifying the account controlling the asset.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.address - Account address specifying the account controlling the asset.
+   *                                   You must specify either an ID or an alias.
+   * @param {Number} params.amount - Amount of the asset to be controlled.
+   */
+  controlWithAddress(params) {
+    this.actions.push(Object.assign({}, params, {type: 'control_address'}))
+  }
+
+  /**
+   * Add an action that controls assets with a receiver.
+   *
+   * @param {Object} params - Action parameters.
+   *
+   * @param {Object} params.control_program - The receiver object in which assets will be controlled.
+   *
+   * @param {String} params.asset_id - Asset ID specifying the asset to be controlled.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.asset_alias - Asset alias specifying the asset to be controlled.
+   *                                   You must specify either an ID or an alias.
+   * @param {Number} params.amount - Amount of the asset to be controlled.
+   */
+  controlWithControlProgram(params) {
+    this.actions.push(Object.assign({}, params, {type: 'control_program"'}))
+  }
+
+  /**
+   * Add an action that spends assets from an account specified by identifier.
+   *
+   * @param {Object} params - Action parameters.
+   * @param {String} params.asset_id - Asset ID specifying the asset to be spent.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.asset_alias - Asset alias specifying the asset to be spent.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.account_id - Account ID specifying the account spending the asset.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.account_alias - Account alias specifying the account spending the asset.
+   *                                   You must specify either an ID or an alias.
+   * @param {Number} params.amount - Amount of the asset to be spent.
+   */
+  spendFromAccount(params) {
+    this.actions.push(Object.assign({}, params, {type: 'spend_account'}))
+  }
+
+  /**
+   * Add an action that spends an account unspent output.
+   *
+   * @param {Object} params - Action parameters.
+   * @param {String} params.output_id - ID of the transaction output to be spent.
+   */
+  spendAccountUnspentOutput(params) {
+    this.actions.push(Object.assign({}, params, {type: 'spend_account_unspent_output'}))
+  }
+
+  /**
+   * Add an action that retires units of an asset.
+   *
+   * @param {Object} params - Action parameters.
+   * @param {String} params.asset_id - Asset ID specifying the asset to be retired.
+   *                                   You must specify either an ID or an alias.
+   * @param {String} params.asset_alias - Asset alias specifying the asset to be retired.
+   *                                   You must specify either an ID or an alias.
+   * @param {Number} params.amount - Amount of the asset to be retired.
+   *
+   * @option params [String] - arbitrary Any message string, can be empty.
+   */
+  retire(params) {
+    this.actions.push(Object.assign({}, params, {type: 'retire'}))
+  }
+}
+
+/**
  * API for interacting with {@link Transaction transactions}.
  *
  * @module TransactionsApi
  */
 const transactionsApi = connection => {
+
+  /**
+   * @callback builderCallback
+   * @param {TransactionBuilder} builder
+   */
+
   /**
    * @typedef {Object} Action
    * Basic unit to build a transaction.
@@ -148,31 +275,36 @@ const transactionsApi = connection => {
    * Whether all input actions are signed. It means this transaction can be submit if true, else not.
    */
 
-  const ONE_MINUTE = 1000 * 60
-
   return {
     /**
-     * Build an unsigned transaction from a set of actions and base transction(possibly null).
+     * Build an unsigned transaction from a set of actions.
      *
-     * @param {String} baseTransaction - Encoded base raw transaction.
-     * @param {module:TransactionsApi~Action[]} actions - Set of actions to compose the transaction.
-     * @param {Number} ttl - Time duration to spent UTXOs will be reserverd(can't be spent during this time duration).
-     * @returns {Promise<Object>} - Unsigned transaction template.
+     * @param {module:TransactionsApi~builderCallback} builderBlock - Function that adds desired actions
+     *                                         to a given builder object.
+     * @returns {Promise<Object>} Unsigned transaction template, or error.
      */
-    build: (baseTransaction = null, actions, ttl = ONE_MINUTE * 2) => connection.request('/build-transaction', {
-      base_transaction: baseTransaction,
-      actions,
-      ttl
-    }),
+    build: (builderBlock) => {
+      const builder = new TransactionBuilder()
+
+      try {
+        builderBlock(builder)
+      } catch (err) {
+        return Promise.reject(err)
+      }
+
+      return connection.request('/build-transaction', builder)
+    },
+
 
     /**
      * Sign transaction.
      *
-     * @param {Object} transaction - The built transaction template.
-     * @param {Object} password - Password of the key which will sign the transaction template.
+     * @param {Object} params - The built transaction template.
+     * @param {String} params.password signature of the password.
+     * @param {Object} params.transaction builded transaction.
      * @returns {Promise<module:TransactionsApi~SignResult>} - Sign result.
      */
-    sign: (transaction, password) => connection.request('/sign-transaction', {transaction, password}),
+    sign: (params) => connection.request('/sign-transaction', params),
 
     /**
      * Submit a signed transaction to the blockchain.
@@ -196,23 +328,22 @@ const transactionsApi = connection => {
      *
      * @returns {Promise<Transaction[]>} All local transactions.
      */
-    listAll: () => connection.request('/list-transactions', {}),
+    listAll: () => connection.request('/list-transactions', {unconfirmed: true}),
 
     /**
-     * List local transactions by id.
+     * List local transactions by id or filter condition.
      *
-     * @param {String} id - The transaction id.
+     * @param {Object} params - Transaction filter params.
+     * @param {String} params.id - transaction id, hash of transaction.
+     * @param {String} params.account_id - id of account.
+     * @param {Boolean} params.detail -  flag of detail transactions, default false (only return transaction summary).
+     * @param {Boolean} params.unconfirmed -  flag of unconfirmed transactions(query result include all confirmed
+     *                  and unconfirmed transactions), default false.
+     * @param {Integer} params.from - The start position of first transaction.
+     * @param {Integer} params.count - The number of returned.
      * @returns {Promise<Transaction[]>} The result transactions.
      */
-    listById: (id) => connection.request('/list-transactions', {id}),
-
-    /**
-     * List all local transactions by account id.
-     *
-     * @param {String} accountId - Account id.
-     * @returns {Promise<Transaction[]>} The result transactions.
-     */
-    listByAccountId: (accountId) => connection.request('list-transactions', {account_id: accountId})
+    list: (params) => connection.request('/list-transactions', params),
   }
 }
 

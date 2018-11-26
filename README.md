@@ -7,7 +7,7 @@
 Cryptographic keys are the primary authorization mechanism on a blockchain.
 
 To create accounts or assets, xpub of keys are required. With this sdk, we can
-`create/delete/list/resetPassword` the key. Please check the 
+`create/delete/listAll/resetPassword/checkPassword` the key. Please check the 
 [API doc](https://bytom.github.io/bytom-node-sdk/module-KeysApi.html) if you want
 to operate with keys.
 
@@ -45,6 +45,20 @@ summation of UTXOs of one account.
 
 [Related API](https://bytom.github.io/bytom-node-sdk/module-BalancesApi.html)
 
+### [Block](https://bytom.github.io/bytom-node-sdk/global.html#Block__anchor)
+
+​	A block is a container data structure that aggregates transactions for inclusion in the public ledger, the blockchain.
+ It is made of a header, containing metadata, followed by a long list of transactions that make up the bulk of its size.
+  Each block references to the previous block, and all the blocks are linked from the back to the front to grow a blockchain.
+
+[Related API](https://bytom.github.io/bytom-node-sdk/module-BlockApi.html)
+
+### [Config](https://bytom.github.io/bytom-node-sdk/global.html#Config__anchor)
+
+Config contain the network information that you wanted to know.  
+
+[Related API](https://bytom.github.io/bytom-node-sdk/module-ConfigApi.html)
+
 ## Usage
 
 ### In your code
@@ -67,7 +81,10 @@ We will walk you through the process to issue some assets.
 ### Step 1: create a key
 
 ```javascript
-const keyPromise = client.keys.create('alias', 'password')
+const keyPromise = client.keys.create({ 
+          alias:'key', 
+          password: 'password'
+         })
 ```
 
 It will create a key whose alias is 'alias' while password is 'password'.
@@ -76,7 +93,11 @@ It will create a key whose alias is 'alias' while password is 'password'.
 
 ```javascript
 const accountPromise = keyPromise.then(key => {
- client.accounts.create([key.xpub], 1, 'account')
+ client.accounts.create({
+     alias: 'account', 
+     root_xpubs: [key.xpub], 
+     quorum: 1 
+ })
 })
 ```
 
@@ -84,7 +105,9 @@ const accountPromise = keyPromise.then(key => {
 
 ```javascript
 const addressPromise = accountPromise.then(account => {
-  return client.accounts.createReceiverById(account.id)
+  return client.accounts.createReceiver({
+    account_alias: account.alias
+  })
 })
 ```
 
@@ -93,12 +116,19 @@ const addressPromise = accountPromise.then(account => {
 ```javascript
 const definition = {
   name: "GOLD",
-  symobol: "GOLD",
+  symbol: "GOLD",
   decimals: 8,
   description: {}
 }
+
 const assetPromise = keyPromise.then(key => {
-  return client.assets.create([key.xpub], 1, 'asset', definition)
+  return client.assets.create(
+    {
+     alias: 'asset',
+     definition,
+     root_xpubs: [key.xpub],
+     quorum: 1
+    })
 })
 ```
 
@@ -113,27 +143,27 @@ const buildPromise = Promise.all([
   assetPromise]
   ).then(([account, address, asset]) => {
   const issueAction = {
-    amount: 10000000000,
+    amount: 100000000,
     asset_alias: asset.alias,
-    type: 'issue'
   }
 
   const gasAction = {
-    type: 'spend_account',
     account_alias: account.alias,
     asset_alias: 'BTM',
     amount: 50000000
   }
 
   const controlAction = {
-    type: 'control_address',
-    amount: 10000000000,
+    amount: 100000000,
     asset_alias: asset.alias,
     address: address.address
   }
   
-  return client.transactions.build(null,
-  [issueAction, gasAction, controlAction])
+  return client.transactions.build(builder => {
+      builder.issue(issueAction)
+      builder.spendFromAccount(gasAction)
+      builder.controlWithAddress(controlAction)
+  })
 })
 
 ```
@@ -142,7 +172,10 @@ const buildPromise = Promise.all([
 
 ```javascript
 const signPromise = buildPromise.then(transactionTemplate => {
-  return client.transactions.sign(transactionTemplate, 'password')
+  return client.transactions.sign({
+    transaction: transactionTemplate, 
+    password: 'password'
+  })
 })
 ```
 

@@ -6,6 +6,8 @@ import transactionApi from './api/transactions'
 import balancesApi from './api/balances'
 import unspentOutputsAPI from './api/unspentOutputs'
 import accessTokensApi from './api/accessTokens'
+import configAPI from './api/config'
+import blockAPI from './api/block'
 
 class Client {
   constructor(baseUrl, token) {
@@ -18,6 +20,8 @@ class Client {
     this.balances = new balancesApi(this.connection)
     this.unspentOutputs = new unspentOutputsAPI(this.connection)
     this.accessTokens = new accessTokensApi(this.connection)
+    this.status = new configAPI(this.connection)
+    this.block = new blockAPI(this.connection)
   }
 }
 
