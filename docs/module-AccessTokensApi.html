@@ -33,7 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+					<li><a href="module-AccessTokensApi.html">AccessTokensApi</a></li><li><a href="module-AccountsApi.html">AccountsApi</a></li><li><a href="module-AssetsApi.html">AssetsApi</a></li><li><a href="module-BalancesApi.html">BalancesApi</a></li><li><a href="module-BlockAPI.html">BlockAPI</a></li><li><a href="module-ConfigApi.html">ConfigApi</a></li><li><a href="module-KeysApi.html">KeysApi</a></li><li><a href="module-TransactionsApi.html">TransactionsApi</a></li><li><a href="module-UnspentOutputsApi.html">UnspentOutputsApi</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="TransactionBuilder.html">TransactionBuilder</a></li>
 				</ul>
 			</li>
 			
@@ -150,7 +157,209 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(id)</h4>
+    <h4 class="name" id="~check"><span class="type-signature">&lt;inner> </span>check(params)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Check the target access token.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Parameters for access token check.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The to be deleted token id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>secret</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>secret of token, the second part of the colon division for token.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~create"><span class="type-signature">&lt;inner> </span>create(params)</h4>
     
     
 </dt>
@@ -193,6 +402,49 @@
 
         <tr>
             
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Access Token Object.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
                 <td class="name"><code>id</code></td>
             
 
@@ -211,6 +463,37 @@
             
 
             <td class="description last"><p>User specified, unique identifier.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>type of token.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -430,7 +713,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~list"><span class="type-signature">&lt;inner> </span>list()</h4>
+    <h4 class="name" id="~listAll"><span class="type-signature">&lt;inner> </span>listAll()</h4>
     
     
 </dt>
@@ -578,7 +861,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-05-24T14:05:00+08:00
+		on 2018-11-26T16:28:32+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

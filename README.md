@@ -2,48 +2,62 @@
 
 ## Terminology
 
-### [Keys](https://bytom.github.io/node-sdk/global.html#Key__anchor)
+### [Keys](https://bytom.github.io/bytom-node-sdk/global.html#Key__anchor)
 
 Cryptographic keys are the primary authorization mechanism on a blockchain.
 
 To create accounts or assets, xpub of keys are required. With this sdk, we can
-`create/delete/list/resetPassword` the key. Please check the 
-[API doc](https://bytom.github.io/node-sdk/module-KeysApi.html) if you want
+`create/delete/listAll/resetPassword/checkPassword` the key. Please check the 
+[API doc](https://bytom.github.io/bytom-node-sdk/module-KeysApi.html) if you want
 to operate with keys.
 
-### [Account](https://bytom.github.io/node-sdk/global.html#Account__anchor)
+### [Account](https://bytom.github.io/bytom-node-sdk/global.html#Account__anchor)
 
 An account is an object in Bytom that tracks ownership of assets on a blockchain. 
 It's defined under one Bytom node created with one or serveral keys.  
 
-[Related API](https://bytom.github.io/node-sdk/module-AccountsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-AccountsApi.html)
 
-### [Asset](https://bytom.github.io/node-sdk/global.html#Asset__anchor)
+### [Asset](https://bytom.github.io/bytom-node-sdk/global.html#Asset__anchor)
 
 An asset is a type of value that can be issued on a blockchain. All units of
 a given asset are fungible. Units of an asset can be transacted directly
 between parties without the involvement of the issuer.
 
-[Related API](https://bytom.github.io/node-sdk/module-AssetsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-AssetsApi.html)
 
-### [Transaction](https://bytom.github.io/node-sdk/global.html#Transaction__anchor)
+### [Transaction](https://bytom.github.io/bytom-node-sdk/global.html#Transaction__anchor)
 
 Blockchain is chain of blocks, while block consists of numbers of transactions.
 
-[Related API](https://bytom.github.io/node-sdk/module-TransactionsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-TransactionsApi.html)
 
-### [Unspent Output(UTXO)](https://bytom.github.io/node-sdk/global.html#UnspentOutput__anchor)
+### [Unspent Output(UTXO)](https://bytom.github.io/bytom-node-sdk/global.html#UnspentOutput__anchor)
 
 Bytom is UTXO based blockchain. One transaction spend some UTXOs, and produces new UTXOs.
 
-[Related API](https://bytom.github.io/node-sdk/module-UnspentOutputsApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-UnspentOutputsApi.html)
 
-### [Balance](https://bytom.github.io/node-sdk/global.html#Balance__anchor)
+### [Balance](https://bytom.github.io/bytom-node-sdk/global.html#Balance__anchor)
 
 Any balance on the blockchain is simply a summation of UTXOs. In one bytomd, balance means
 summation of UTXOs of one account.
 
-[Related API](https://bytom.github.io/node-sdk/module-BalancesApi.html)
+[Related API](https://bytom.github.io/bytom-node-sdk/module-BalancesApi.html)
+
+### [Block](https://bytom.github.io/bytom-node-sdk/global.html#Block__anchor)
+
+​	A block is a container data structure that aggregates transactions for inclusion in the public ledger, the blockchain.
+ It is made of a header, containing metadata, followed by a long list of transactions that make up the bulk of its size.
+  Each block references to the previous block, and all the blocks are linked from the back to the front to grow a blockchain.
+
+[Related API](https://bytom.github.io/bytom-node-sdk/module-BlockApi.html)
+
+### [Config](https://bytom.github.io/bytom-node-sdk/global.html#Config__anchor)
+
+Config contain the network information that you wanted to know.  
+
+[Related API](https://bytom.github.io/bytom-node-sdk/module-ConfigApi.html)
 
 ## Usage
 
@@ -67,7 +81,10 @@ We will walk you through the process to issue some assets.
 ### Step 1: create a key
 
 ```javascript
-const keyPromise = client.keys.create('alias', 'password')
+const keyPromise = client.keys.create({ 
+          alias:'key', 
+          password: 'password'
+         })
 ```
 
 It will create a key whose alias is 'alias' while password is 'password'.
@@ -76,7 +93,11 @@ It will create a key whose alias is 'alias' while password is 'password'.
 
 ```javascript
 const accountPromise = keyPromise.then(key => {
- client.accounts.create([key.xpub], 1, 'account')
+ client.accounts.create({
+     alias: 'account', 
+     root_xpubs: [key.xpub], 
+     quorum: 1 
+ })
 })
 ```
 
@@ -84,7 +105,9 @@ const accountPromise = keyPromise.then(key => {
 
 ```javascript
 const addressPromise = accountPromise.then(account => {
-  return client.accounts.createReceiverById(account.id)
+  return client.accounts.createReceiver({
+    account_alias: account.alias
+  })
 })
 ```
 
@@ -93,12 +116,19 @@ const addressPromise = accountPromise.then(account => {
 ```javascript
 const definition = {
   name: "GOLD",
-  symobol: "GOLD",
+  symbol: "GOLD",
   decimals: 8,
   description: {}
 }
+
 const assetPromise = keyPromise.then(key => {
-  return client.assets.create([key.xpub], 1, 'asset', definition)
+  return client.assets.create(
+    {
+     alias: 'asset',
+     definition,
+     root_xpubs: [key.xpub],
+     quorum: 1
+    })
 })
 ```
 
@@ -113,27 +143,27 @@ const buildPromise = Promise.all([
   assetPromise]
   ).then(([account, address, asset]) => {
   const issueAction = {
-    amount: 10000000000,
+    amount: 100000000,
     asset_alias: asset.alias,
-    type: 'issue'
   }
 
   const gasAction = {
-    type: 'spend_account',
     account_alias: account.alias,
     asset_alias: 'BTM',
     amount: 50000000
   }
 
   const controlAction = {
-    type: 'control_address',
-    amount: 10000000000,
+    amount: 100000000,
     asset_alias: asset.alias,
     address: address.address
   }
   
-  return client.transactions.build(null,
-  [issueAction, gasAction, controlAction])
+  return client.transactions.build(builder => {
+      builder.issue(issueAction)
+      builder.spendFromAccount(gasAction)
+      builder.controlWithAddress(controlAction)
+  })
 })
 
 ```
@@ -142,7 +172,10 @@ const buildPromise = Promise.all([
 
 ```javascript
 const signPromise = buildPromise.then(transactionTemplate => {
-  return client.transactions.sign(transactionTemplate, 'password')
+  return client.transactions.sign({
+    transaction: transactionTemplate, 
+    password: 'password'
+  })
 })
 ```
 

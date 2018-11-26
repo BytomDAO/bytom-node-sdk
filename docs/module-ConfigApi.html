@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Bytom Node.js SDK Module: UnspentOutputsApi</title>
+	<title>Bytom Node.js SDK Module: ConfigApi</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,7 +79,7 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Module: UnspentOutputsApi</h1>
+	<h1 class="page-title">Module: ConfigApi</h1>
 <section>
 
 <header>
@@ -91,7 +91,10 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>API for interacting with <a href="global.html#UnspentOutput">unspent outputs</a>.</p></div>
+            <div class="description"><p>Bytom Core can be configured as a new blockchain network, or as a node in an
+existing blockchain network.</p>
+<p>More info: {}
+API for interacting with configs.</p></div>
         
 
         
@@ -157,7 +160,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~list"><span class="type-signature">&lt;inner> </span>list(params)</h4>
+    <h4 class="name" id="~gasRate"><span class="type-signature">&lt;inner> </span>gasRate()</h4>
     
     
 </dt>
@@ -165,8 +168,208 @@
 
     
     <div class="description">
-        <p>Get target unspent outputs.</p>
+        <p>get gas rate</p>
     </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Promise resolved with gas rate on success.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~netInfo"><span class="type-signature">&lt;inner> </span>netInfo()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Get info on specified Bytom Core.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Requested Net Info of specified Bytom Core.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="global.html#CoreInfo">CoreInfo</a>></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~verifyMessage"><span class="type-signature">&lt;inner> </span>verifyMessage(params)</h4>
+    
+    
+</dt>
+<dd>
+
     
 
     
@@ -205,19 +408,13 @@
 
             <td class="type">
             
-                
-<span class="param-type">Object</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Filter and pagination information.</p>
+            <td class="description last">
                 <h6 class="method-params-label method-subparams-label">Properties</h6>
                 
 
@@ -243,7 +440,7 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>address</code></td>
             
 
             <td class="type">
@@ -260,110 +457,14 @@
 
             
 
-            <td class="description last"><p>Unspent output id.</p></td>
+            <td class="description last"><p>address for account.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>unconfirmed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>is include unconfirmed utxo</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>smart_contract</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>is contract utxo</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>from</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Integer</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the start position of first utxo</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Integer</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the number of returned</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>account_id</code></td>
+                <td class="name"><code>derived_xpub</code></td>
             
 
             <td class="type">
@@ -380,14 +481,14 @@
 
             
 
-            <td class="description last"><p>account id.</p></td>
+            <td class="description last"><p>derived xpub.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>account_alias</code></td>
+                <td class="name"><code>message</code></td>
             
 
             <td class="type">
@@ -404,7 +505,31 @@
 
             
 
-            <td class="description last"><p>name of account.</p></td>
+            <td class="description last"><p>message for signature by derived_xpub.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>signature</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>signature for message.</p></td>
         </tr>
 
     
@@ -475,7 +600,7 @@
     
             
 <div class="param-desc">
-    <p>Target unspent outputs.</p>
+    <p>[Boolean] result, verify result.</p>
 </div>
 
 
@@ -486,109 +611,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Array.&lt;<a href="global.html#UnspentOutput">UnspentOutput</a>>></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="~listAll"><span class="type-signature">&lt;inner> </span>listAll()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get all unspent outputs.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>Target unspent outputs.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Array.&lt;<a href="global.html#UnspentOutput">UnspentOutput</a>>></span>
+<span class="param-type">Promise.&lt;Object></span>
 
 
 
